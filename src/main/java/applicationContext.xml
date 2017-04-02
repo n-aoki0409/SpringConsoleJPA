@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-4.3.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<context:annotation-config />
+
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean"
+		p:persistenceUnitName="ticketReservation">
+	</bean>
+
+	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+
+	<bean id="menuUi" class="ui.MenuUi" />
+
+	<bean id="selectEventUi" class="ui.SelectEventUi" />
+
+	<bean id="selectUserUi" class="ui.SelectUserUi" />
+
+	<bean id="eventDao" class="dao.impl.EventDaoImpl" />
+
+	<bean id="userDao" class="dao.impl.UserDaoImpl" />
+
+	<bean id="ticketDao" class="dao.impl.TicketDaoImpl" />
+
+	<bean id="reservationDao" class="dao.impl.ReservationDaoImpl" />
+
+	<bean id="rankDao" class="dao.impl.RankDaoImpl" />
+
+	<bean id="deleteReservationUi" class="ui.DeleteReservationUi" />
+
+	<bean id="updateUserUi" class="ui.UpdateUserUi" />
+
+	<bean id="selectRankUi" class="ui.SelectRankUi" />
+
+	<bean id="insertReservationUi" class="ui.InsertReservationUi" />
+
+	<!-- トランザクションマネージャの設定 -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
+		p:entityManagerFactory-ref="entityManagerFactory" />
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+</beans>
